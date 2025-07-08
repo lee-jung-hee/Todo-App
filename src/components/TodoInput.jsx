@@ -1,15 +1,17 @@
-function TodoInput({ inputValue, handleList, setInputValue }) {
-  const handleInputValue = (e) => {
-    setInputValue(e.target.value);
-  };
+import { useRef } from "react";
+
+function TodoInput({ handleList }) {
+  const inputValueRef = useRef(null);
+
+  const getInputValue = () => inputValueRef.current.value;
 
   return (
     <>
-      <input type="text" value={inputValue} onChange={handleInputValue} />
+      <input ref={inputValueRef} />
       <button
         onClick={() => {
-          handleList();
-          setInputValue("");
+          handleList(getInputValue());
+          inputValueRef.current.value = "";
         }}
         style={{ background: "gold" }}
       >

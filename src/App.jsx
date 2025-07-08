@@ -30,9 +30,7 @@ function App() {
       checked: false,
     },
   ]);
-  const [inputValue, setInputValue] = useState("");
-
-  const handleList = () => {
+  const handleList = (content) => {
     setTodoList([
       ...todoList,
       {
@@ -40,7 +38,7 @@ function App() {
           todoList.length > 0
             ? Math.max(...todoList.map((todo) => todo.id)) + 1
             : 0,
-        content: inputValue,
+        content: content,
         time: formatDate(new Date()),
         checked: false,
       },
@@ -60,11 +58,7 @@ function App() {
         <div className="todo-container">
           <TodoList todoList={todoList} setTodoList={setTodoList} />
         </div>
-        <TodoInput
-          inputValue={inputValue}
-          handleList={handleList}
-          setInputValue={setInputValue}
-        />
+        <TodoInput handleList={handleList} />
       </div>
     </>
   );
