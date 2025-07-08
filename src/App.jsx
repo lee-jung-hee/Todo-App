@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import TodoList from "./components/TodoList";
+import TodoInput from "./components/TodoInput";
 
 function App() {
   function formatDate(dateStr) {
@@ -8,6 +10,8 @@ function App() {
       year: "numeric",
       month: "numeric",
       day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
       hour12: false,
     }).format(date);
   }
@@ -45,124 +49,23 @@ function App() {
 
   return (
     <>
-      <main>
-        <h1>✅ My Secret Note 🗒️</h1>
-        <TodoList todoList={todoList} setTodoList={setTodoList} />
-        <hr />
+      <h1>👑 Digital Nomad List</h1>
+      <div className="container">
+        <div className="sort-container">
+          <span>Check</span>
+          <span id="todo-list">Todo List</span>
+          <span id="time">Time</span>
+          <span>Modify</span>
+        </div>
+        <div className="todo-container">
+          <TodoList todoList={todoList} setTodoList={setTodoList} />
+        </div>
         <TodoInput
           inputValue={inputValue}
           handleList={handleList}
           setInputValue={setInputValue}
         />
-      </main>
-    </>
-  );
-}
-
-function TodoList({ todoList, setTodoList }) {
-  return (
-    <ul>
-      {todoList.length === 0 ? (
-        <span>Make your list</span>
-      ) : (
-        todoList.map((todo) => (
-          <Todo key={todo.id} todo={todo} setTodoList={setTodoList} />
-        ))
-      )}
-    </ul>
-  );
-}
-
-function TodoInput({ inputValue, handleList, setInputValue }) {
-  const handleInputValue = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  return (
-    <>
-      <input type="text" value={inputValue} onChange={handleInputValue} />
-      <button
-        onClick={() => {
-          handleList();
-          setInputValue("");
-        }}
-      >
-        Add List
-      </button>
-    </>
-  );
-}
-
-function Todo({ todo, setTodoList }) {
-  const [inputValue, setInputValue] = useState(todo.content);
-  const [modify, setModify] = useState(false);
-
-  const handleDelete = () => {
-    setTodoList((prev) => prev.filter((list) => list.id !== todo.id));
-  };
-
-  const handleCheck = () => {
-    setTodoList((prev) =>
-      prev.map((item) =>
-        item.id === todo.id ? { ...item, checked: !item.checked } : item
-      )
-    );
-  };
-
-  const handleModify = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleChangeBtn = () => {
-    setModify((prev) => !prev);
-
-    setTodoList((prev) =>
-      prev.map((item) =>
-        item.id === todo.id ? { ...item, content: inputValue } : item
-      )
-    );
-  };
-
-  const liStyle = {
-    textDecoration: todo.checked ? "line-through" : "none",
-    color: todo.checked ? "gray" : "black",
-  };
-
-  const spanStyle = {
-    display: modify ? "none" : "inline",
-    margin: 10,
-  };
-
-  const modifyStyle = {
-    display: modify ? "inline" : "none",
-    marginLeft: 10,
-    marginRight: 10,
-  };
-  console.log(todo.content);
-
-  return (
-    <>
-      <li style={liStyle}>
-        <span>
-          <input
-            type="checkbox"
-            checked={todo.checked || false}
-            onChange={handleCheck}
-          />
-          To do :
-          <input
-            onChange={handleModify}
-            style={modifyStyle}
-            value={inputValue}
-          />
-          <span style={spanStyle}>{todo.content} </span>
-        </span>
-        Time : {todo.time}
-        <span>
-          <button onClick={handleChangeBtn}>Modify</button>
-          <button onClick={handleDelete}>❌</button>
-        </span>
-      </li>
+      </div>
     </>
   );
 }

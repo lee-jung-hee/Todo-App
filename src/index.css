@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: #2c2c2c;
-  background-color: #f5f7fa;
+  background-color: #faf8f5;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,7 +20,7 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background-color: #faf8f5;
 }
 
 main {
@@ -49,27 +49,25 @@ button {
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #4f46e5;
-  color: white;
+  text-align: center;
+  background-color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
   margin-left: 8px;
+  transition: 0.3s;
 }
 button:hover {
-  background-color: #3730a3;
+  transition: 0.3s;
+  filter: opacity(60%);
 }
 
 input {
   padding: 0.5em 1em;
   border-radius: 6px;
-  border: 1px solid #d1d5db;
+  border: 1px solid gold;
   font-size: 1rem;
   font-family: inherit;
   outline: none;
   transition: border-color 0.2s;
-}
-input:focus {
-  border-color: #4f46e5;
 }
 
 ul,
@@ -79,9 +77,9 @@ ol {
 }
 
 li {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  border: 1px solid gold;
   background-color: #ffffff;
+  border-radius: 8px;
   margin-bottom: 12px;
   padding: 1rem;
   display: flex;
@@ -90,4 +88,36 @@ li {
   gap: 0.75rem;
   font-size: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  border: 1px solid gold;
+  border-radius: 15px;
+  background-color: #ffffff;
+  width: 80vw;
+  min-width: 550px;
+  height: 70vh;
+  padding: 20px;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  text-align: left;
+  font-weight: 800;
+}
+
+#todo-list {
+  padding-right: 100px;
+}
+
+#time {
+  padding-right: 130px;
 }
