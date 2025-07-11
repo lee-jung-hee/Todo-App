@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import TodoList from "./components/TodoList";
 import TodoInput from "./components/TodoInput";
 import { supabase } from "./createClient";
@@ -66,12 +65,12 @@ function App() {
 
   return (
     <>
-      <h1>👑 Digital Nomad List</h1>
-      <div className="container">
-        <div className="sort-container">
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">👑 Digital Nomad List</h1>
+      <div className="container border border-yellow-500 rounded-xl bg-white w-11/12 md:w-4/5 lg:w-3/5 xl:w-2/5 p-5 mx-auto shadow-lg">
+        <div className="sort-container flex items-center justify-between px-5 text-left font-extrabold">
           <span>Check</span>
-          <span id="todo-list">Todo List</span>
-          <span id="time">Time</span>
+          <span id="todo-list" className="pr-24">Todo List</span>
+          <span id="time" className="pr-32">Time</span>
           <span>Modify</span>
         </div>
         <div className="todo-container">
